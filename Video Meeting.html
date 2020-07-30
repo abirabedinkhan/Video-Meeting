@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://video.sebastienbiollo.com/jtgj -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Google Meet / Zoom clone in a few lines of code. Video Meeting is a video conference website that lets you stay in touch with all your friends."><meta name="keywords" content="videocall meetings videochat google-meet google-meet-clone zoom-clone meet webrtc webrtc-video webrtc-call screensharing peer-to-peer Real-time"><meta name="author" content="Sebastien Biollo"><link rel="icon" href="https://video.sebastienbiollo.com/icon.png"><meta name="theme-color" content="#000000"><link rel="manifest" href="https://video.sebastienbiollo.com/manifest.json"><title>Video Meeting</title><script type="text/javascript" async="" src="./Video Meeting_files/analytics.js.download"></script><script async="" src="./Video Meeting_files/js"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-163893871-2")</script><link href="./Video Meeting_files/2.a54b9991.chunk.css" rel="stylesheet"><link href="./Video Meeting_files/main.7e169c8b.chunk.css" rel="stylesheet"><style data-jss="" data-meta="MuiTouchRipple">
+.MuiTouchRipple-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.MuiTouchRipple-ripple {
+  opacity: 0;
+  position: absolute;
+}
+.MuiTouchRipple-rippleVisible {
+  opacity: 0.3;
+  animation: MuiTouchRipple-keyframes-enter 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+.MuiTouchRipple-ripplePulsate {
+  animation-duration: 200ms;
+}
+.MuiTouchRipple-child {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.MuiTouchRipple-childLeaving {
+  opacity: 0;
+  animation: MuiTouchRipple-keyframes-exit 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.MuiTouchRipple-childPulsate {
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: MuiTouchRipple-keyframes-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-enter {
+  0% {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-exit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+</style><style data-jss="" data-meta="MuiIconButton">
+.MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+.MuiIconButton-root:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.MuiIconButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: transparent;
+}
+@media (hover: none) {
+  .MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-edgeStart {
+  margin-left: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeStart {
+  margin-left: -3px;
+}
+.MuiIconButton-edgeEnd {
+  margin-right: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeEnd {
+  margin-right: -3px;
+}
+.MuiIconButton-colorInherit {
+  color: inherit;
+}
+.MuiIconButton-colorPrimary {
+  color: #3f51b5;
+}
+.MuiIconButton-colorPrimary:hover {
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-colorSecondary {
+  color: #f50057;
+}
+.MuiIconButton-colorSecondary:hover {
+  background-color: rgba(245, 0, 87, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-sizeSmall {
+  padding: 3px;
+  font-size: 1.125rem;
+}
+.MuiIconButton-label {
+  width: 100%;
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+}
+</style><style data-jss="" data-meta="MuiBadge">
+.MuiBadge-root {
+  display: inline-flex;
+  position: relative;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.MuiBadge-badge {
+  height: 20px;
+  display: flex;
+  padding: 0 6px;
+  z-index: 1;
+  position: absolute;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  min-width: 20px;
+  box-sizing: border-box;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  align-items: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  align-content: center;
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: center;
+}
+.MuiBadge-colorPrimary {
+  color: #fff;
+  background-color: #3f51b5;
+}
+.MuiBadge-colorSecondary {
+  color: #fff;
+  background-color: #f50057;
+}
+.MuiBadge-colorError {
+  color: #fff;
+  background-color: #f44336;
+}
+.MuiBadge-dot {
+  height: 8px;
+  padding: 0;
+  min-width: 8px;
+  border-radius: 4px;
+}
+.MuiBadge-anchorOriginTopRightRectangle {
+  top: 0;
+  right: 0;
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+.MuiBadge-anchorOriginTopRightRectangle.MuiBadge-invisible {
+  transform: scale(0) translate(50%, -50%);
+}
+.MuiBadge-anchorOriginBottomRightRectangle {
+  right: 0;
+  bottom: 0;
+  transform: scale(1) translate(50%, 50%);
+  transform-origin: 100% 100%;
+}
+.MuiBadge-anchorOriginBottomRightRectangle.MuiBadge-invisible {
+  transform: scale(0) translate(50%, 50%);
+}
+.MuiBadge-anchorOriginTopLeftRectangle {
+  top: 0;
+  left: 0;
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: 0% 0%;
+}
+.MuiBadge-anchorOriginTopLeftRectangle.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, -50%);
+}
+.MuiBadge-anchorOriginBottomLeftRectangle {
+  left: 0;
+  bottom: 0;
+  transform: scale(1) translate(-50%, 50%);
+  transform-origin: 0% 100%;
+}
+.MuiBadge-anchorOriginBottomLeftRectangle.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, 50%);
+}
+.MuiBadge-anchorOriginTopRightCircle {
+  top: 14%;
+  right: 14%;
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+.MuiBadge-anchorOriginTopRightCircle.MuiBadge-invisible {
+  transform: scale(0) translate(50%, -50%);
+}
+.MuiBadge-anchorOriginBottomRightCircle {
+  right: 14%;
+  bottom: 14%;
+  transform: scale(1) translate(50%, 50%);
+  transform-origin: 100% 100%;
+}
+.MuiBadge-anchorOriginBottomRightCircle.MuiBadge-invisible {
+  transform: scale(0) translate(50%, 50%);
+}
+.MuiBadge-anchorOriginTopLeftCircle {
+  top: 14%;
+  left: 14%;
+  transform: scale(1) translate(-50%, -50%);
+  transform-origin: 0% 0%;
+}
+.MuiBadge-anchorOriginTopLeftCircle.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, -50%);
+}
+.MuiBadge-anchorOriginBottomLeftCircle {
+  left: 14%;
+  bottom: 14%;
+  transform: scale(1) translate(-50%, 50%);
+  transform-origin: 0% 100%;
+}
+.MuiBadge-anchorOriginBottomLeftCircle.MuiBadge-invisible {
+  transform: scale(0) translate(-50%, 50%);
+}
+.MuiBadge-invisible {
+  transition: transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+</style><style data-jss="" data-meta="MuiInputBase">
+@-webkit-keyframes mui-auto-fill {}
+@-webkit-keyframes mui-auto-fill-cancel {}
+.MuiInputBase-root {
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  display: inline-flex;
+  position: relative;
+  font-size: 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.1875em;
+  letter-spacing: 0.00938em;
+}
+.MuiInputBase-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.38);
+  cursor: default;
+}
+.MuiInputBase-multiline {
+  padding: 6px 0 7px;
+}
+.MuiInputBase-multiline.MuiInputBase-marginDense {
+  padding-top: 3px;
+}
+.MuiInputBase-fullWidth {
+  width: 100%;
+}
+.MuiInputBase-input {
+  font: inherit;
+  color: currentColor;
+  width: 100%;
+  border: 0;
+  height: 1.1875em;
+  margin: 0;
+  display: block;
+  padding: 6px 0 7px;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiInputBase-input::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiInputBase-input::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiInputBase-input:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiInputBase-input::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiInputBase-input:focus {
+  outline: 0;
+}
+.MuiInputBase-input:invalid {
+  box-shadow: none;
+}
+.MuiInputBase-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.MuiInputBase-input.Mui-disabled {
+  opacity: 1;
+}
+.MuiInputBase-input:-webkit-autofill {
+  animation-name: mui-auto-fill;
+  animation-duration: 5000s;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-webkit-input-placeholder {
+  opacity: 0 !important;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-moz-placeholder {
+  opacity: 0 !important;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input:-ms-input-placeholder {
+  opacity: 0 !important;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input::-ms-input-placeholder {
+  opacity: 0 !important;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+label[data-shrink=false] + .MuiInputBase-formControl .MuiInputBase-input:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+.MuiInputBase-inputMarginDense {
+  padding-top: 3px;
+}
+.MuiInputBase-inputMultiline {
+  height: auto;
+  resize: none;
+  padding: 0;
+}
+.MuiInputBase-inputTypeSearch {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+}
+</style><style data-jss="" data-meta="MuiInput">
+.MuiInput-root {
+  position: relative;
+}
+label + .MuiInput-formControl {
+  margin-top: 16px;
+}
+.MuiInput-colorSecondary.MuiInput-underline:after {
+  border-bottom-color: #f50057;
+}
+.MuiInput-underline:after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  transform: scaleX(0);
+  transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  border-bottom: 2px solid #3f51b5;
+  pointer-events: none;
+}
+.MuiInput-underline.Mui-focused:after {
+  transform: scaleX(1);
+}
+.MuiInput-underline.Mui-error:after {
+  transform: scaleX(1);
+  border-bottom-color: #f44336;
+}
+.MuiInput-underline:before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "\00a0";
+  position: absolute;
+  transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  pointer-events: none;
+}
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.87);
+}
+.MuiInput-underline.Mui-disabled:before {
+  border-bottom-style: dotted;
+}
+@media (hover: none) {
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  }
+}
+</style><style data-jss="" data-meta="MuiButton">
+.MuiButton-root {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+.MuiButton-root:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.MuiButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+@media (hover: none) {
+  .MuiButton-root:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-root:hover.Mui-disabled {
+  background-color: transparent;
+}
+.MuiButton-label {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.MuiButton-text {
+  padding: 6px 8px;
+}
+.MuiButton-textPrimary {
+  color: #3f51b5;
+}
+.MuiButton-textPrimary:hover {
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-textPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-textSecondary {
+  color: #f50057;
+}
+.MuiButton-textSecondary:hover {
+  background-color: rgba(245, 0, 87, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-textSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 5px 15px;
+}
+.MuiButton-outlined.Mui-disabled {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiButton-outlinedPrimary {
+  color: #3f51b5;
+  border: 1px solid rgba(63, 81, 181, 0.5);
+}
+.MuiButton-outlinedPrimary:hover {
+  border: 1px solid #3f51b5;
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-outlinedPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-outlinedSecondary {
+  color: #f50057;
+  border: 1px solid rgba(245, 0, 87, 0.5);
+}
+.MuiButton-outlinedSecondary:hover {
+  border: 1px solid #f50057;
+  background-color: rgba(245, 0, 87, 0.04);
+}
+.MuiButton-outlinedSecondary.Mui-disabled {
+  border: 1px solid rgba(0, 0, 0, 0.26);
+}
+@media (hover: none) {
+  .MuiButton-outlinedSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-contained {
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  background-color: #e0e0e0;
+}
+.MuiButton-contained:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: #d5d5d5;
+}
+.MuiButton-contained.Mui-focusVisible {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiButton-contained:active {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiButton-contained.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+@media (hover: none) {
+  .MuiButton-contained:hover {
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+}
+.MuiButton-contained:hover.Mui-disabled {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #3f51b5;
+}
+.MuiButton-containedPrimary:hover {
+  background-color: #303f9f;
+}
+@media (hover: none) {
+  .MuiButton-containedPrimary:hover {
+    background-color: #3f51b5;
+  }
+}
+.MuiButton-containedSecondary {
+  color: #fff;
+  background-color: #f50057;
+}
+.MuiButton-containedSecondary:hover {
+  background-color: #c51162;
+}
+@media (hover: none) {
+  .MuiButton-containedSecondary:hover {
+    background-color: #f50057;
+  }
+}
+.MuiButton-disableElevation {
+  box-shadow: none;
+}
+.MuiButton-disableElevation:hover {
+  box-shadow: none;
+}
+.MuiButton-disableElevation.Mui-focusVisible {
+  box-shadow: none;
+}
+.MuiButton-disableElevation:active {
+  box-shadow: none;
+}
+.MuiButton-disableElevation.Mui-disabled {
+  box-shadow: none;
+}
+.MuiButton-colorInherit {
+  color: inherit;
+  border-color: currentColor;
+}
+.MuiButton-textSizeSmall {
+  padding: 4px 5px;
+  font-size: 0.8125rem;
+}
+.MuiButton-textSizeLarge {
+  padding: 8px 11px;
+  font-size: 0.9375rem;
+}
+.MuiButton-outlinedSizeSmall {
+  padding: 3px 9px;
+  font-size: 0.8125rem;
+}
+.MuiButton-outlinedSizeLarge {
+  padding: 7px 21px;
+  font-size: 0.9375rem;
+}
+.MuiButton-containedSizeSmall {
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+}
+.MuiButton-containedSizeLarge {
+  padding: 8px 22px;
+  font-size: 0.9375rem;
+}
+.MuiButton-fullWidth {
+  width: 100%;
+}
+.MuiButton-startIcon {
+  display: inherit;
+  margin-left: -4px;
+  margin-right: 8px;
+}
+.MuiButton-startIcon.MuiButton-iconSizeSmall {
+  margin-left: -2px;
+}
+.MuiButton-endIcon {
+  display: inherit;
+  margin-left: 8px;
+  margin-right: -4px;
+}
+.MuiButton-endIcon.MuiButton-iconSizeSmall {
+  margin-right: -2px;
+}
+.MuiButton-iconSizeSmall > *:first-child {
+  font-size: 18px;
+}
+.MuiButton-iconSizeMedium > *:first-child {
+  font-size: 20px;
+}
+.MuiButton-iconSizeLarge > *:first-child {
+  font-size: 22px;
+}
+</style><style data-jss="" data-meta="MuiSvgIcon">
+.MuiSvgIcon-root {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+.MuiSvgIcon-colorPrimary {
+  color: #3f51b5;
+}
+.MuiSvgIcon-colorSecondary {
+  color: #f50057;
+}
+.MuiSvgIcon-colorAction {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiSvgIcon-colorError {
+  color: #f44336;
+}
+.MuiSvgIcon-colorDisabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
+}
+.MuiSvgIcon-fontSizeSmall {
+  font-size: 1.25rem;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 2.1875rem;
+}
+</style></head><body data-gr-c-s-loaded="true"><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div><div><div><div style="text-align: center; background-color: whitesmoke; color: whitesmoke;" class="btn-down"><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" style="color: rgb(66, 66, 66);"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" style="color: rgb(244, 67, 54);"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" style="color: rgb(66, 66, 66);"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" style="color: rgb(66, 66, 66);"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M21.22 18.02l2 2H24v-2h-2.78zm.77-2l.01-10c0-1.11-.9-2-2-2H7.22l5.23 5.23c.18-.04.36-.07.55-.1V7.02l4 3.73-1.58 1.47 5.54 5.54c.61-.33 1.03-.99 1.03-1.74zM2.39 1.73L1.11 3l1.54 1.54c-.4.36-.65.89-.65 1.48v10c0 1.1.89 2 2 2H0v2h18.13l2.71 2.71 1.27-1.27L2.39 1.73zM7 15.02c.31-1.48.92-2.95 2.07-4.06l1.59 1.59c-1.54.38-2.7 1.18-3.66 2.47z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><span class="MuiBadge-root"><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" style="color: rgb(66, 66, 66);"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><span class="MuiBadge-badge MuiBadge-anchorOriginTopRightRectangle MuiBadge-colorSecondary MuiBadge-invisible">0</span></span></div><div class="container"><div style="padding-top: 20px;"><div class="MuiInputBase-root MuiInput-root MuiInput-underline" disable="true"><input type="text" class="MuiInputBase-input MuiInput-input" value="https://video.sebastienbiollo.com/jtgj"></div><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button" style="background-color: rgb(63, 81, 181); color: whitesmoke; margin-left: 20px; margin-top: 10px; width: 120px; font-size: 10px;"><span class="MuiButton-label">Copy invite link</span><span class="MuiTouchRipple-root"></span></button></div><div id="main" class="flex-container row" style="margin: 0px; padding: 0px;"><video id="my-video" autoplay="" style="border-style: solid; border-color: rgb(189, 189, 189); margin: 10px; object-fit: fill; width: 45%; height: 100%; min-width: 30%; min-height: 40%;"></video><video data-socket="yIMNlvfY4zUiBLTgAAW5" autoplay="" style="min-width: 30%; min-height: 40%; max-height: 100%; width: 45%; height: 100%; margin: 10px; border-style: solid; border-color: rgb(189, 189, 189); object-fit: fill;"></video></div></div></div></div></div></div><script>!function(e){function r(r){for(var n,i,l=r[0],f=r[1],a=r[2],c=0,s=[];c<l.length;c++)i=l[c],Object.prototype.hasOwnProperty.call(o,i)&&o[i]&&s.push(o[i][0]),o[i]=0;for(n in f)Object.prototype.hasOwnProperty.call(f,n)&&(e[n]=f[n]);for(p&&p(r);s.length;)s.shift()();return u.push.apply(u,a||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,l=1;l<t.length;l++){var f=t[l];0!==o[f]&&(n=!1)}n&&(u.splice(r--,1),e=i(i.s=t[0]))}return e}var n={},o={1:0},u=[];function i(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,i),t.l=!0,t.exports}i.m=e,i.c=n,i.d=function(e,r,t){i.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(e,r){if(1&r&&(e=i(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(i.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)i.d(t,n,function(r){return e[r]}.bind(null,n));return t},i.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(r,"a",r),r},i.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},i.p="/";var l=this.webpackJsonpvideo=this.webpackJsonpvideo||[],f=l.push.bind(l);l.push=r,l=l.slice();for(var a=0;a<l.length;a++)r(l[a]);var p=f;t()}([])</script><script src="./Video Meeting_files/2.ebefb2ae.chunk.js.download"></script><script src="./Video Meeting_files/main.8e5139e3.chunk.js.download"></script></body></html>
